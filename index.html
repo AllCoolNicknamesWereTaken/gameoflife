@@ -9,6 +9,7 @@
         border: black 1px solid;
         float: left;
         position: absolute;
+        transition: background 0.3s;
 
       }
       .littleRectangle {
@@ -17,34 +18,32 @@
         float: left;
 
       }
+      .active {
+        background: blue;
+      }
     </style>
   </head>
   <body>
     <script>
         var body = document.body;
 
-
         function CreateArray(x, y) {
 
           for(var j = 0; j < y; j++) {
 
-              for(var i = 0; i < x; i++) {
-                var square = document.createElement('div');
-                square.className = 'square';
-                document.body.appendChild(square);
-                square.style.left = 15 * i + 'px';
-                square.style.top = 15 * j + 'px';
-                square.addEventListener("click", function(event) {
-                 event.target.style.background = "blue";
-                });
-              }
+            for(var i = 0; i < x; i++) {
+              var square = document.createElement('div');
+              square.className = 'square';
+              document.body.appendChild(square);
+              square.style.left = 15 * i + 'px';
+              square.style.top = 15 * j + 'px';
+              square.addEventListener("click", function(event) {
+                event.target.classList.toggle('active');
+              });
             }
+          }
         }
         CreateArray(10, 10);
-
-    
-
-
         </script>
   </body>
 </html>
