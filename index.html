@@ -37,11 +37,32 @@
               document.body.appendChild(square);
               square.style.left = 15 * i + 'px';
               square.style.top = 15 * j + 'px';
+              square.dataset.x = i;
+              square.dataset.y = j;
+              //console.log(i);
               square.addEventListener("click", function(event) {
                 event.target.classList.toggle('active');
+                console.log(AmoutOfNeighbors(event.target));
               });
             }
           }
+        }
+         function AmoutOfNeighbors(square) {
+
+          var x = parseInt(square.dataset.x, 10);
+          var y = parseInt(square.dataset.y, 10);
+          var result = 0;
+
+          for(var j = -1; j < 2; j++) {
+            for(var i = -1; i < 2; i++) {
+              let selector = document.querySelector('[data-x="' + (x+i) + '"][data-y="'+ (y+j) +'"].active');
+              if(!(i === 0 && j ===0) && selector) {
+                result++
+
+              }
+            }
+          }
+          return result;
         }
         CreateArray(10, 10);
         </script>
