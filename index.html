@@ -21,7 +21,7 @@
       .active {
         background: blue;
       }
-      #start {
+      #startButton {
         position:absolute;
       }
       .change{
@@ -30,15 +30,13 @@
     </style>
   </head>
   <body>
-     <button id='start' type="button">Start</button>
+     <button id='startButton' type="button">Start</button>
     <script>
         var body = document.body;
-        start.style.top =200 + 'px';
+        document.getElementById('startButton').style.top = 200 + 'px';
 
         function CreateArray(x, y) {
-
           for(var j = 0; j < y; j++) {
-
             for(var i = 0; i < x; i++) {
               var square = document.createElement('div');
               square.className = 'square';
@@ -57,23 +55,19 @@
         }
 
          function AmountOfNeighbors(x, y) {
-
-          //var x = parseInt(square.dataset.x, 10);
-          //var y = parseInt(square.dataset.y, 10);
           var result = 0;
-
           for(var j = -1; j < 2; j++) {
             for(var i = -1; i < 2; i++) {
               let selector = document.querySelector('[data-x="' + (x+i) + '"][data-y="'+ (y+j) +'"].active');
               if(!(i === 0 && j ===0) && selector) {
                 result++
-
               }
             }
           }
           return result;
         }
-        start.addEventListener("click", function(event) {
+
+        function start() {
           let amount = 0;
           let selector = 0;
           for(let y = 0; y < 10; y++) {
@@ -82,26 +76,29 @@
               selector = document.querySelector('[data-x="'+ x +'"][data-y="'+ y +'"]');
               if (selector.classList.contains('active')) {
                 if(amount < 2 || amount > 3) {
-                  selector.status = 1;
+                  selector.dataset.status = 1;
                 }
               }
               else if (amount == 3) {
-                selector.status = 1;
+                selector.dataset.status = 1;
               }
             }
           }
           for(let y = 0; y < 10; y++) {
             for(let x = 0; x < 10; x++) {
               selector = document.querySelector('[data-x="'+ x +'"][data-y="'+ y +'"]');
-              if (selector.status == 1) {
+              if (selector.dataset.status == 1) {
                 selector.classList.toggle('active');
-                selector.status = 0;
+                selector.dataset.status = 0;
               }
             }
           }
+        }
+        CreateArray(10, 10);
+        startButton.addEventListener("click", function(event){
+          setInterval(start, 1000);
         });
 
-        CreateArray(10, 10);
         </script>
   </body>
 </html>
