@@ -9,6 +9,7 @@
         border: black 1px solid;
         float: left;
         position: absolute;
+
       }
       .littleRectangle {
         width: 5px;
@@ -33,10 +34,17 @@
                 document.body.appendChild(square);
                 square.style.left = 15 * i + 'px';
                 square.style.top = 15 * j + 'px';
+                square.addEventListener("click", function(event) {
+                 event.target.style.background = "blue";
+                });
               }
-          }
+            }
         }
         CreateArray(10, 10);
+         document.getElementsByClassName("square")[0].addEventListener("click", function(event) {
+          event.target.style.background = "blue";
+    });
+
 
         </script>
   </body>
