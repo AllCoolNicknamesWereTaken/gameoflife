@@ -8,7 +8,7 @@
         height: 15px;
         border: black 1px solid;
         float: left;
-        /*position: absolute;*/
+        position: absolute;
       }
       .littleRectangle {
         width: 5px;
@@ -22,18 +22,18 @@
     <script>
         var body = document.body;
 
+
         function CreateArray(x, y) {
 
-          for(var i = 0; i < x; i++) {
-            var square = document.createElement('div');
-            square.className = 'square';
-            document.body.appendChild(square);
+          for(var j = 0; j < y; j++) {
 
-
-
-            // var rectangle = document.createElement('div');
-            // document.body.appendChild(rectangle);
-            // rectangle.className = 'littleRectangle';
+              for(var i = 0; i < x; i++) {
+                var square = document.createElement('div');
+                square.className = 'square';
+                document.body.appendChild(square);
+                square.style.left = 15 * i + 'px';
+                square.style.top = 15 * j + 'px';
+              }
           }
         }
         CreateArray(10, 10);
