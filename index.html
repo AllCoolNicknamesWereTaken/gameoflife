@@ -2,8 +2,42 @@
 <html lang="pl">
   <head>
     <meta charset='utf-8'>
+    <style>
+      .square {
+        width: 15px;
+        height: 15px;
+        border: black 1px solid;
+        float: left;
+        /*position: absolute;*/
+      }
+      .littleRectangle {
+        width: 5px;
+        height: 15px;
+        float: left;
+
+      }
+    </style>
   </head>
   <body>
-    
+    <script>
+        var body = document.body;
+
+        function CreateArray(x, y) {
+
+          for(var i = 0; i < x; i++) {
+            var square = document.createElement('div');
+            square.className = 'square';
+            document.body.appendChild(square);
+
+
+
+            // var rectangle = document.createElement('div');
+            // document.body.appendChild(rectangle);
+            // rectangle.className = 'littleRectangle';
+          }
+        }
+        CreateArray(10, 10);
+
+        </script>
   </body>
 </html>
