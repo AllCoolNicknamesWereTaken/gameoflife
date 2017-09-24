@@ -21,8 +21,9 @@
       .active {
         background: blue;
       }
-      #startButton {
-        position:absolute;
+      #Button {
+        /*position:absolute;*/
+        float: right;
       }
       .change{
 
@@ -30,11 +31,12 @@
     </style>
   </head>
   <body>
-     <button id='startButton' type="button">Start</button>
+     <button id='Button' type="button">Start</button>
     <script>
         var body = document.body;
-        document.getElementById('startButton').style.top = 200 + 'px';
-
+        //document.getElementById('Button').style.top = 200 + 'px';
+        var Interval;
+        var GameState;
         function CreateArray(x, y) {
           for(var j = 0; j < y; j++) {
             for(var i = 0; i < x; i++) {
@@ -70,8 +72,8 @@
         function start() {
           let amount = 0;
           let selector = 0;
-          for(let y = 0; y < 10; y++) {
-            for(let x = 0; x < 10; x++) {
+          for(let y = 0; y < 25; y++) {
+            for(let x = 0; x < 25; x++) {
               amount =  AmountOfNeighbors(x, y);
               selector = document.querySelector('[data-x="'+ x +'"][data-y="'+ y +'"]');
               if (selector.classList.contains('active')) {
@@ -84,8 +86,8 @@
               }
             }
           }
-          for(let y = 0; y < 10; y++) {
-            for(let x = 0; x < 10; x++) {
+          for(let y = 0; y < 25; y++) {
+            for(let x = 0; x < 25; x++) {
               selector = document.querySelector('[data-x="'+ x +'"][data-y="'+ y +'"]');
               if (selector.dataset.status == 1) {
                 selector.classList.toggle('active');
@@ -94,9 +96,16 @@
             }
           }
         }
-        CreateArray(10, 10);
-        startButton.addEventListener("click", function(event){
-          setInterval(start, 1000);
+        CreateArray(25, 25);
+        Button.addEventListener("click", function(event){
+          if(GameState == 'Start'){
+          GameState = document.getElementById('Button').innerHTML = 'Stop';
+          Interval = setInterval(start, 300);
+          }
+          else {
+            clearInterval(Interval);
+          GameState = document.getElementById('Button').innerHTML = 'Start';
+          }
         });
 
         </script>
